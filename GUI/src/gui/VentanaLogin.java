@@ -175,7 +175,9 @@ class VentanaPrincipal extends JFrame implements ActionListener {
 
         // Agregar ActionListener al botón
         	botonCrear.addActionListener(this);
+        	botonConsultar.addActionListener(this);
         	botonBorrar.addActionListener(this);
+
         }
 
         	// Método que se ejecuta al hacer clic en el botón
@@ -200,10 +202,10 @@ class VentanaPrincipal extends JFrame implements ActionListener {
 class VentanaCrearDocumento extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 7704809550470454186L;
 	// Elementos de la ventana
-    private JButton botonCrear, botonConsultar, botonBorrar;
+    private JButton botonCrearLibros, botonCrearMusica, botonCrearDocumentales, botonCrearPeliculas;
 
     public VentanaCrearDocumento() {
-        super("Menu Documentos");
+        super("Crear un nuevo...");
         setSize(600, 150);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -212,13 +214,16 @@ class VentanaCrearDocumento extends JFrame implements ActionListener {
         JPanel panelBoton = new JPanel();
 
         // Crear los elementos de la ventana        
-        botonCrear = new JButton("Crear");
-        botonConsultar = new JButton("Consultar");
-        botonBorrar = new JButton("Borrar");
+        botonCrearLibros = new JButton("Libro");
+        botonCrearMusica = new JButton("Musica");
+        botonCrearDocumentales = new JButton("Documental");
+        botonCrearPeliculas = new JButton("Pelicula");
 
-        panelBoton.add(botonCrear);
-        panelBoton.add(botonConsultar);
-        panelBoton.add(botonBorrar);
+
+        panelBoton.add(botonCrearLibros);
+        panelBoton.add(botonCrearMusica);
+        panelBoton.add(botonCrearDocumentales);
+        panelBoton.add(botonCrearPeliculas);
 
 
         // Agregar los paneles a la ventana
@@ -226,27 +231,40 @@ class VentanaCrearDocumento extends JFrame implements ActionListener {
         add(panelBoton, BorderLayout.CENTER);
 
         // Agregar ActionListener al botón
-        	botonCrear.addActionListener(this);
-        	
-        }
+        botonCrearLibros.addActionListener(this);
+        botonCrearMusica.addActionListener(this);
+        botonCrearDocumentales.addActionListener(this);
+        botonCrearPeliculas.addActionListener(this);
+    }
 
         	// Método que se ejecuta al hacer clic en el botón
         	public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == botonCrear) {
+                if (e.getSource() == botonCrearLibros) {
                     // Abrir una nueva ventana para crear una cuenta nueva
-                    VentanaCrearDocumento VentanaCrearDocumento = new VentanaCrearDocumento();
-                    VentanaCrearDocumento.setVisible(true);
-                } else if (e.getSource() == botonConsultar) {
-                    VentanaConsultarDocumento VentanaConsultarDocumento = new VentanaConsultarDocumento();
-                    VentanaConsultarDocumento.setVisible(true);
+                    VentanaCrearLibro VentanaCrearLibro = new VentanaCrearLibro();
+                    VentanaCrearLibro.setVisible(true);
+                } else if (e.getSource() == botonCrearMusica) {
+                	VentanaCrearMusica VentanaCrearMusica = new VentanaCrearMusica();
+                	VentanaCrearMusica.setVisible(true);
 
-                } else if (e.getSource() == botonBorrar) {
-                    VentanaBorrarDocumento VentanaBorrarDocumento = new VentanaBorrarDocumento();
-                    VentanaBorrarDocumento.setVisible(true);
+                } else if (e.getSource() == botonCrearDocumentales) {
+                	VentanaCrearDocumental VentanaCrearDocumental = new VentanaCrearDocumental();
+                	VentanaCrearDocumental.setVisible(true);
+                } else if (e.getSource() == botonCrearPeliculas) {
+                	VentanaCrearPelicula VentanaCrearPelicula = new VentanaCrearPelicula();
+                	VentanaCrearPelicula.setVisible(true);
                 }
 
         	}
 }
+
+
+
+
+
+
+
+
 
 class VentanaConsultarDocumento extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 3423774522076822536L;
@@ -269,83 +287,17 @@ class VentanaBorrarDocumento extends JFrame implements ActionListener {
 	private static final long serialVersionUID = -2928518913953821012L;
 
 	// Elementos de la ventana
-	private JButton botonBorrarLibro, botonBorrarMusica, botonBorrarPelicula, botonBorrarDocumental;
+    // Cambiad por las variables
+	
 
-    public VentanaBorrarDocumento() {
-        super("Borrar un...");
-        setSize(600, 150);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-        // Crear paneles para colocar los elementos de la ventana
-        JPanel panelPrincipal = new JPanel(new GridLayout(3, 2));
-        JPanel panelBoton = new JPanel();
-
-        // Crear los elementos de la ventana        
-        botonBorrarLibro = new JButton("Borrar Libro");
-        botonBorrarMusica = new JButton("Borrar Música");
-        botonBorrarPelicula = new JButton("Borrar Película");
-        botonBorrarDocumental = new JButton("Borrar Documental");
-        
-
-        panelBoton.add(botonBorrarLibro);
-        panelBoton.add(botonBorrarMusica);
-        panelBoton.add(botonBorrarPelicula);
-        panelBoton.add(botonBorrarDocumental);
+	public VentanaBorrarDocumento() {
 
 
-        // Agregar los paneles a la ventana
-        add(panelPrincipal, BorderLayout.NORTH);
-        add(panelBoton, BorderLayout.CENTER);
-
-        // Agregar ActionListener al botón
-        	botonBorrarLibro.addActionListener(this);
-        	botonBorrarMusica.addActionListener(this);
-        	botonBorrarPelicula.addActionListener(this);
-        	botonBorrarDocumental.addActionListener(this);
-        }
-
-        	// Método que se ejecuta al hacer clic en el botón
-        	public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == botonBorrarLibro) {
-                    // Abrir una nueva ventana para crear una cuenta nueva
-                    VentanaCrearDocumento VentanaCrearDocumento = new VentanaCrearDocumento();
-                    VentanaCrearDocumento.setVisible(true);
-                } else if (e.getSource() == botonBorrarMusica) {
-                    VentanaConsultarDocumento VentanaConsultarDocumento = new VentanaConsultarDocumento();
-                    VentanaConsultarDocumento.setVisible(true);
-
-                } else if (e.getSource() == botonBorrarPelicula) {
-                    VentanaBorrarDocumento VentanaBorrarDocumento = new VentanaBorrarDocumento();
-                    VentanaBorrarDocumento.setVisible(true);
-                }
-
-        	}
-        	
-      
-}
-
-class VentanaBorrarLibro extends JFrame implements ActionListener {
-	private static final long serialVersionUID = -245857705764134574L;
-	private JTextField  isbnLibro;
-	public VentanaBorrarLibro() {
-		
-		super("Borrar Libro");
-		setSize(600,150);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		
-		// Crear paneles para colocar los elementos de la ventana
-        JPanel panelPrincipal = new JPanel(new GridLayout(3, 2));
-        JPanel panelBoton = new JPanel();
-		
-	}
-
-	@Override
+    }
+    
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+
 	}
-	
-	
 }
 
 
